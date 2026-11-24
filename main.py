@@ -10,12 +10,16 @@ import os
 LABEL = "WARNING: Do not warn your past self about this trip. He ignored you the first time."
 
 
-def label():
-    text = LABEL.strip()
+def validate_label(text):
     if not 1 <= len(text) <= 120:
         raise ValueError(f"label is {len(text)} characters, must be 1-120")
     if text != text.strip() or "\n" in text:
         raise ValueError("label must be exactly one line with no extra whitespace")
+
+
+def label():
+    text = LABEL.strip()
+    validate_label(text)
     return text
 
 
